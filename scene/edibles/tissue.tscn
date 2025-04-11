@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1arw7wcnju11"]
+
+[ext_resource type="Script" path="res://script/Edible.gd" id="1_y814a"]
+[ext_resource type="Texture2D" uid="uid://c8d0apmhcyd1j" path="res://asset/edible/tissue.png" id="2_bsvh3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a6odh"]
+radius = 8.0
+height = 16.0
+
+[node name="Tissue" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_y814a")
+value = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_bsvh3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+scale = Vector2(0.8, 0.8)
+shape = SubResource("CapsuleShape2D_a6odh")

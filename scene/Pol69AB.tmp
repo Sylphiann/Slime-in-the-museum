@@ -1,0 +1,129 @@
+[gd_scene load_steps=17 format=3 uid="uid://spb0nqmojty4"]
+
+[ext_resource type="Texture2D" uid="uid://by2tpgyrsjjgh" path="res://asset/police.png" id="1_k6pc2"]
+[ext_resource type="Script" path="res://script/Patrol.gd" id="1_nnwog"]
+
+[sub_resource type="Curve2D" id="Curve2D_wg35d"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 126, 512, 0, 0, 0, 0, 642.667, 512, 0, 0, 0, 0, 650.667, 214, 0, 0, 0, 0, 1084, 213.333, 0, 0, 0, 0, 1082, 447.333)
+}
+point_count = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rih7g"]
+atlas = ExtResource("1_k6pc2")
+region = Rect2(0, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0mf8"]
+atlas = ExtResource("1_k6pc2")
+region = Rect2(35, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrk11"]
+atlas = ExtResource("1_k6pc2")
+region = Rect2(70, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojdra"]
+atlas = ExtResource("1_k6pc2")
+region = Rect2(105, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0iiy"]
+atlas = ExtResource("1_k6pc2")
+region = Rect2(0, 70, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1awvq"]
+atlas = ExtResource("1_k6pc2")
+region = Rect2(35, 70, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11nrd"]
+atlas = ExtResource("1_k6pc2")
+region = Rect2(70, 70, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhuju"]
+atlas = ExtResource("1_k6pc2")
+region = Rect2(105, 70, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm5md"]
+atlas = ExtResource("1_k6pc2")
+region = Rect2(0, 35, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8ij3"]
+atlas = ExtResource("1_k6pc2")
+region = Rect2(35, 35, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hexl"]
+atlas = ExtResource("1_k6pc2")
+region = Rect2(70, 35, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdkyu"]
+atlas = ExtResource("1_k6pc2")
+region = Rect2(105, 35, 35, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1waia"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rih7g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0mf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrk11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojdra")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a0iiy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1awvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11nrd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhuju")
+}],
+"loop": true,
+"name": &"walk_sideways",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm5md")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8ij3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hexl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdkyu")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 6.0
+}]
+
+[node name="Police" type="Path2D"]
+curve = SubResource("Curve2D_wg35d")
+script = ExtResource("1_nnwog")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(126, 512)
+rotates = false
+loop = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PathFollow2D"]
+scale = Vector2(2.8, 2.8)
+sprite_frames = SubResource("SpriteFrames_1waia")
+animation = &"walk_sideways"
+autoplay = "walk_down"
+frame = 2
+frame_progress = 0.184508

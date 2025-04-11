@@ -1,0 +1,121 @@
+[gd_scene load_steps=11 format=3 uid="uid://btgpncpkdpgv3"]
+
+[ext_resource type="Script" path="res://script/MainMenu.gd" id="1_kbeob"]
+[ext_resource type="Texture2D" uid="uid://cfwdko2u7pft4" path="res://asset/logo.png" id="2_5k0pe"]
+[ext_resource type="Texture2D" uid="uid://dt4c040ucqf7b" path="res://asset/slime.png" id="3_gsll0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rg61"]
+atlas = ExtResource("3_gsll0")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1p3qh"]
+atlas = ExtResource("3_gsll0")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0brl"]
+atlas = ExtResource("3_gsll0")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4vrk"]
+atlas = ExtResource("3_gsll0")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omvql"]
+atlas = ExtResource("3_gsll0")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2f3b"]
+atlas = ExtResource("3_gsll0")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h1deh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rg61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1p3qh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0brl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4vrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omvql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2f3b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MainMenu" type="CanvasLayer"]
+script = ExtResource("1_kbeob")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.114966, 0.14601, 0.315387, 0.580392)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 2
+offset_left = 124.0
+offset_top = 61.0
+offset_right = 586.0
+offset_bottom = 349.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("2_5k0pe")
+expand_mode = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ColorRect"]
+position = Vector2(889, 416)
+scale = Vector2(4.96094, 4.96094)
+sprite_frames = SubResource("SpriteFrames_h1deh")
+autoplay = "default"
+frame_progress = 0.503895
+
+[node name="Start" type="LinkButton" parent="ColorRect"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 349.0
+offset_right = 2867.0
+offset_bottom = 1031.0
+scale = Vector2(0.05, 0.05)
+theme_override_font_sizes/font_size = 500
+text = "Start Game"
+underline = 1
+
+[node name="StageSelect" type="LinkButton" parent="ColorRect"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 400.0
+offset_right = 3036.0
+offset_bottom = 1082.0
+scale = Vector2(0.05, 0.05)
+theme_override_font_sizes/font_size = 500
+text = "Stage Select"
+underline = 1
+
+[node name="Quit" type="LinkButton" parent="ColorRect"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 455.0
+offset_right = 3036.0
+offset_bottom = 1137.0
+scale = Vector2(0.05, 0.05)
+theme_override_font_sizes/font_size = 500
+text = "Quit"
+underline = 1
+
+[connection signal="pressed" from="ColorRect/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="ColorRect/StageSelect" to="." method="_on_stage_select_pressed"]
+[connection signal="pressed" from="ColorRect/Quit" to="." method="_on_quit_pressed"]

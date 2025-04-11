@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6whv2njsw6de"]
+
+[ext_resource type="Script" path="res://script/Edible.gd" id="1_a86aa"]
+[ext_resource type="Texture2D" uid="uid://cq858itbhxrwg" path="res://asset/edible/crown.png" id="2_bj5ay"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1s8ft"]
+radius = 23.0
+
+[node name="Crown" type="Area2D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_a86aa")
+value = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_bj5ay")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_1s8ft")

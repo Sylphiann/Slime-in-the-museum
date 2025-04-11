@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=3 uid="uid://26v321je7xsh"]
+
+[ext_resource type="Texture2D" uid="uid://cfwdko2u7pft4" path="res://asset/logo.png" id="1_84e81"]
+[ext_resource type="Script" path="res://script/Pause.gd" id="1_gj8cj"]
+[ext_resource type="Texture2D" uid="uid://by2tpgyrsjjgh" path="res://asset/police.png" id="3_hh7pa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xm4eh"]
+atlas = ExtResource("3_hh7pa")
+region = Rect2(0, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2qar"]
+atlas = ExtResource("3_hh7pa")
+region = Rect2(35, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_574y8"]
+atlas = ExtResource("3_hh7pa")
+region = Rect2(70, 0, 35, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v30qy"]
+atlas = ExtResource("3_hh7pa")
+region = Rect2(105, 0, 35, 35)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h1deh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xm4eh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2qar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_574y8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v30qy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Pause" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_gj8cj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.105882, 0.105882, 0.105882, 0.698039)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 2
+offset_left = 124.0
+offset_top = 61.0
+offset_right = 586.0
+offset_bottom = 349.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("1_84e81")
+expand_mode = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ColorRect"]
+position = Vector2(889, 416)
+scale = Vector2(11.241, 11.241)
+sprite_frames = SubResource("SpriteFrames_h1deh")
+autoplay = "default"
+frame_progress = 0.869808
+
+[node name="Retry" type="LinkButton" parent="ColorRect"]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 355.0
+offset_right = 1432.0
+offset_bottom = 1037.0
+scale = Vector2(0.05, 0.05)
+theme_override_font_sizes/font_size = 500
+text = "Retry"
+underline = 1
+
+[node name="MainMenu" type="LinkButton" parent="ColorRect"]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 416.0
+offset_right = 2865.0
+offset_bottom = 1098.0
+scale = Vector2(0.05, 0.05)
+theme_override_font_sizes/font_size = 500
+text = "Main Menu"
+underline = 1
+
+[connection signal="pressed" from="ColorRect/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="ColorRect/MainMenu" to="." method="_on_main_menu_pressed"]

@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://cva1g5tfiuyf7"]
+
+[ext_resource type="Script" path="res://script/Fail.gd" id="1_l4vka"]
+[ext_resource type="Texture2D" uid="uid://cfwdko2u7pft4" path="res://asset/logo.png" id="2_rybtx"]
+[ext_resource type="Texture2D" uid="uid://dt4c040ucqf7b" path="res://asset/slime.png" id="3_ywau5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80o0y"]
+atlas = ExtResource("3_ywau5")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhkln"]
+atlas = ExtResource("3_ywau5")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyjg0"]
+atlas = ExtResource("3_ywau5")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h1deh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80o0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhkln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyjg0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Fail" type="CanvasLayer"]
+script = ExtResource("1_l4vka")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.105882, 0.105882, 0.105882, 0.698039)
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+layout_mode = 2
+offset_left = 124.0
+offset_top = 61.0
+offset_right = 586.0
+offset_bottom = 349.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("2_rybtx")
+expand_mode = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ColorRect"]
+position = Vector2(889, 416)
+scale = Vector2(4.96094, 4.96094)
+sprite_frames = SubResource("SpriteFrames_h1deh")
+autoplay = "default"
+frame_progress = 0.869808
+
+[node name="Retry" type="LinkButton" parent="ColorRect"]
+offset_left = 144.0
+offset_top = 369.0
+offset_right = 2866.0
+offset_bottom = 1051.0
+scale = Vector2(0.05, 0.05)
+theme_override_font_sizes/font_size = 500
+text = "Retry"
+underline = 1
+
+[node name="MainMenu" type="LinkButton" parent="ColorRect"]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 432.0
+offset_right = 2867.0
+offset_bottom = 1114.0
+scale = Vector2(0.05, 0.05)
+theme_override_font_sizes/font_size = 500
+text = "Main Menu"
+underline = 1
+
+[connection signal="pressed" from="ColorRect/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="ColorRect/MainMenu" to="." method="_on_main_menu_pressed"]

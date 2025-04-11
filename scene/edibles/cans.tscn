@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpp1mo7l8f10c"]
+
+[ext_resource type="Script" path="res://script/Various.gd" id="1_i1phk"]
+[ext_resource type="Texture2D" uid="uid://cbdw7xcguvy1b" path="res://asset/edible/cans.png" id="2_koipa"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d05mb"]
+radius = 6.0
+height = 16.0
+
+[node name="Cans" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_i1phk")
+value = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_koipa")
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_d05mb")

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://ku2jxntq3xkc"]
+
+[ext_resource type="Script" path="res://script/Edible.gd" id="1_wllom"]
+[ext_resource type="Texture2D" uid="uid://043wx4wbknh7" path="res://asset/edible/vase.png" id="2_y8b6p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1s8ft"]
+radius = 33.0151
+
+[node name="Vase" type="Area2D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_wllom")
+value = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_y8b6p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1s8ft")

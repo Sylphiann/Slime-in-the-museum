@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dde7hbordlomw"]
+
+[ext_resource type="Script" path="res://script/Edible.gd" id="1_cqb36"]
+[ext_resource type="Texture2D" uid="uid://cr67g14xrlhbn" path="res://asset/edible/cup.png" id="2_fvu42"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t72lo"]
+radius = 27.0
+height = 60.0
+
+[node name="Cup" type="Area2D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_cqb36")
+value = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fvu42")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_t72lo")

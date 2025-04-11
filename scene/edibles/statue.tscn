@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1edxjw5lh48p"]
+
+[ext_resource type="Script" path="res://script/Edible.gd" id="1_24alj"]
+[ext_resource type="Texture2D" uid="uid://4k37u4kqauwd" path="res://asset/edible/sigmoai.png" id="2_nto54"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2yiry"]
+radius = 20.0
+height = 60.0
+
+[node name="Statue" type="Area2D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_24alj")
+value = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_nto54")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_2yiry")
