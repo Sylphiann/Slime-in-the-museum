@@ -9,12 +9,15 @@ extends CharacterBody2D
 @onready var eat_timer: Timer = $"../EatTimer"
 @onready var mimic_timer: Timer = $"../MimicTimer"
 
+@onready var transform_animation: AnimatedSprite2D = $TransformAnimate
+
 var is_eating: bool = false
 var is_mimic: bool = false
 var last_direction = Vector2.DOWN
 
 
 func _ready() -> void:
+	transform_animation.hide()
 	last_eaten_sprite.hide()
 	eat_timer.one_shot = true
 	mimic_timer.one_shot = true
@@ -56,6 +59,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("mimic") and !is_mimic and mimic_timer.is_stopped():
 		if Stats.energy >= Stats.stage_two:
 			if Stats.last_sprite:
+				transform_animation.show()
+				transform_animation.play()
 				animated_sprite.hide()
 				last_eaten_sprite.texture = Stats.last_sprite.texture
 				if Stats.last_sprite.hframes > 1:
@@ -162,3 +167,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	is_eating = false
 	Stats.can_move = true
 	update_animation()
+
+
+func _on_transform_animate_animation_finished() -> void:
+	transform_animation.hide()
