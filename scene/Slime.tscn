@@ -1,9 +1,11 @@
-[gd_scene load_steps=53 format=3 uid="uid://sdo7i7sf8xr1"]
+[gd_scene load_steps=55 format=3 uid="uid://sdo7i7sf8xr1"]
 
 [ext_resource type="Texture2D" uid="uid://dt4c040ucqf7b" path="res://asset/slime.png" id="1_iofoj"]
 [ext_resource type="Script" path="res://script/Player.gd" id="1_se23e"]
 [ext_resource type="Texture2D" uid="uid://7h62exg4t7pi" path="res://asset/VFX/SmokeFX Lite SpriteSheet 3A-5.png" id="2_405fq"]
 [ext_resource type="Texture2D" uid="uid://df5he28sm72v3" path="res://asset/VFX/05.png" id="4_xvanp"]
+[ext_resource type="AudioStream" uid="uid://bsjgeorab3mcf" path="res://asset/SFX/sci-fi-bubble-pop-89059.mp3" id="5_l35dd"]
+[ext_resource type="AudioStream" uid="uid://486ypbstcwok" path="res://asset/SFX/woosh-230554.wav" id="6_fvjrl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_80q6w"]
 atlas = ExtResource("2_405fq")
@@ -450,6 +452,12 @@ scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_uma2k")
 frame = 13
 frame_progress = 1.0
+
+[node name="eat_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_l35dd")
+
+[node name="transfrom_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_fvjrl")
 
 [connection signal="animation_finished" from="TransformAnimate" to="." method="_on_transform_animate_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

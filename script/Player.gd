@@ -15,6 +15,9 @@ extends CharacterBody2D
 @onready var eat_animation3: AnimatedSprite2D = $eat_anim2
 @onready var eat_animation4: AnimatedSprite2D = $eat_anim3
 
+@onready var eat_sound: AudioStreamPlayer2D = $eat_sound
+@onready var transform_sound: AudioStreamPlayer2D = $transfrom_sound
+
 var is_eating: bool = false
 var is_mimic: bool = false
 var last_direction = Vector2.DOWN
@@ -56,6 +59,7 @@ func _physics_process(delta: float) -> void:
 			if raycast.is_colliding():
 				var collider = raycast.get_collider()
 				if collider is Edible:
+					eat_sound.play()
 					eat_animation1.show()
 					eat_animation2.show()
 					eat_animation3.show()
@@ -75,6 +79,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("mimic") and !is_mimic and mimic_timer.is_stopped():
 		if Stats.energy >= Stats.stage_two:
 			if Stats.last_sprite:
+				transform_sound.play()
 				transform_animation.show()
 				transform_animation.play()
 				animated_sprite.hide()
