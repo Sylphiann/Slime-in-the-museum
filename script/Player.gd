@@ -10,6 +10,10 @@ extends CharacterBody2D
 @onready var mimic_timer: Timer = $"../MimicTimer"
 
 @onready var transform_animation: AnimatedSprite2D = $TransformAnimate
+@onready var eat_animation1: AnimatedSprite2D = $eat_anim
+@onready var eat_animation2: AnimatedSprite2D = $eat_anim1
+@onready var eat_animation3: AnimatedSprite2D = $eat_anim2
+@onready var eat_animation4: AnimatedSprite2D = $eat_anim3
 
 var is_eating: bool = false
 var is_mimic: bool = false
@@ -18,10 +22,13 @@ var last_direction = Vector2.DOWN
 
 func _ready() -> void:
 	transform_animation.hide()
+	eat_animation1.hide()
+	eat_animation2.hide()
+	eat_animation3.hide()
+	eat_animation4.hide()
 	last_eaten_sprite.hide()
 	eat_timer.one_shot = true
 	mimic_timer.one_shot = true
-
 
 func _physics_process(delta: float) -> void:
 	if !Stats.can_move:
@@ -49,6 +56,15 @@ func _physics_process(delta: float) -> void:
 			if raycast.is_colliding():
 				var collider = raycast.get_collider()
 				if collider is Edible:
+					eat_animation1.show()
+					eat_animation2.show()
+					eat_animation3.show()
+					eat_animation4.show()
+					eat_animation1.play()
+					eat_animation2.play()
+					eat_animation3.play()
+					eat_animation4.play()
+					
 					eat_timer.start()
 					Stats.last_sprite = collider.sprite.duplicate()
 					collider.shrink()
@@ -171,3 +187,10 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 func _on_transform_animate_animation_finished() -> void:
 	transform_animation.hide()
+
+
+func _on_eat_anim_animation_finished() -> void:
+	eat_animation1.hide()
+	eat_animation2.hide()
+	eat_animation3.hide()
+	eat_animation4.hide()

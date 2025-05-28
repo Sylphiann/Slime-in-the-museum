@@ -382,13 +382,15 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 25.0
+"speed": 18.0
 }]
 
 [node name="Slime" type="CharacterBody2D"]
 scale = Vector2(1.2, 1.2)
 collision_layer = 3
 script = ExtResource("1_se23e")
+speed = null
+spawn = null
 
 [node name="TransformAnimate" type="AnimatedSprite2D" parent="."]
 position = Vector2(-5.83333, 3.33333)
@@ -421,37 +423,23 @@ collision_mask = 24
 collide_with_areas = true
 
 [node name="eat_anim" type="AnimatedSprite2D" parent="."]
-position = Vector2(6.14619e-13, 38.3333)
+position = Vector2(-1.59872e-13, 37.5)
 rotation = -1.5708
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_uma2k")
-frame = 13
-frame_progress = 1.0
 
 [node name="eat_anim1" type="AnimatedSprite2D" parent="."]
-position = Vector2(1.66667, -39.1667)
-rotation = 1.5708
+position = Vector2(20.8333, 41.6667)
+rotation = -1.86925
 scale = Vector2(1.345, 1.345)
 sprite_frames = SubResource("SpriteFrames_uma2k")
-frame = 13
-frame_progress = 1.0
 
 [node name="eat_anim2" type="AnimatedSprite2D" parent="."]
-position = Vector2(-48.3333, 0.833333)
+position = Vector2(-16.6667, 35)
+rotation = -1.21126
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_uma2k")
-frame = 13
-frame_progress = 1.0
-
-[node name="eat_anim3" type="AnimatedSprite2D" parent="."]
-position = Vector2(48.3333, 3.33333)
-rotation = -3.14159
-scale = Vector2(1.5, 1.5)
-sprite_frames = SubResource("SpriteFrames_uma2k")
-frame = 13
-frame_progress = 1.0
 
 [connection signal="animation_finished" from="TransformAnimate" to="." method="_on_transform_animate_animation_finished"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="Hover" to="." method="_on_hover_area_entered"]
-[connection signal="animation_finished" from="eat_anim" to="." method="_on_eat_anim_animation_finished"]
